@@ -1,4 +1,8 @@
 <?php
+
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 ini_set('display_errors', 0);
 error_reporting(E_ALL);
 session_start();
@@ -83,20 +87,20 @@ $buildWords = [
     ["word" => "AIR", "emoji" => "💨", "syllables" => ["AI", "R"]]
 ];
 
-$activities = [
-    'alphabet'   => new Alphabet($letras, $session),
-    'listen'     => new Listen($palavras, $session),
-    'speak'      => new Speak($palavras, $session),
-    'write'      => new Write($palavras, $session),
-    'timetrial' => new TimeTrial($vocabulary, $session)
-];
-
 $vocabulary = [
     ["word" => "CAT", "emoji" => "🐱"], ["word" => "DOG", "emoji" => "🐕"],
     ["word" => "SUN", "emoji" => "☀️"], ["word" => "APPLE", "emoji" => "🍎"],
     ["word" => "CAR", "emoji" => "🚗"], ["word" => "BIRD", "emoji" => "🐦"],
     ["word" => "FISH", "emoji" => "🐠"], ["word" => "STAR", "emoji" => "⭐"],
     ["word" => "HOUSE", "emoji" => "🏠"], ["word" => "BOOK", "emoji" => "📚"]
+];
+
+$activities = [
+    'alphabet'   => new Alphabet($letras, $session),
+    'listen'     => new Listen($palavras, $session),
+    'speak'      => new Speak($palavras, $session),
+    'write'      => new Write($palavras, $session),
+    'timetrial' => new TimeTrial($vocabulary, $session)
 ];
 
 header('Content-Type: application/json');

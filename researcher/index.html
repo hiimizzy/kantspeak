@@ -1,26 +1,139 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Researcher Dashboard - KantSpeak</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>KantSpeak - Painel do Pesquisador</title>
+  <link rel="shortcut icon" href="../img/autismo.png" type="image/x-icon">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { font-family: 'Nunito', sans-serif; }
+    .stat-card {
+      transition: transform 0.1s;
+    }
+    .stat-card:hover {
+      transform: translateY(-2px);
+    }
+    .log-table {
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    .feedback-toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #22c55e;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 40px;
+      font-weight: bold;
+      z-index: 1000;
+      animation: fadeOut 3s forwards;
+    }
+    @keyframes fadeOut {
+      0% { opacity: 1; transform: translateY(0); }
+      80% { opacity: 1; }
+      100% { opacity: 0; transform: translateY(-20px); visibility: hidden; }
+    }
+  </style>
 </head>
-<body class="bg-gray-100 p-6">
-    <div class="max-w-7xl mx-auto">
-        <h1 class="text-3xl font-bold">📊 KantSpeak - Researcher Dashboard</h1>
-        <div class="grid grid-cols-4 gap-4 my-6">
-            <div class="bg-white p-4 rounded shadow">Total Sessions: <span id="totalSessions">0</span></div>
-            <div class="bg-white p-4 rounded shadow">Avg Accuracy: <span id="avgAccuracy">0%</span></div>
-            <div class="bg-white p-4 rounded shadow">Avg Response Time: <span id="avgTime">0s</span></div>
-            <div class="bg-white p-4 rounded shadow">Active Exp: <span id="activeExp">None</span></div>
-        </div>
-        <canvas id="accuracyChart" height="100"></canvas>
-        <div class="mt-6">
-            <button id="exportCSV" class="bg-green-600 text-white px-4 py-2 rounded">Export CSV</button>
-            <button id="refresh" class="bg-blue-600 text-white px-4 py-2 rounded">Refresh</button>
-        </div>
+<body class="bg-gray-100 min-h-screen p-6">
+
+<div class="max-w-7xl mx-auto">
+  <!-- Header -->
+  <div class="flex justify-between items-center mb-6 bg-white/80 backdrop-blur p-4 rounded-2xl shadow">
+    <div>
+      <h1 class="text-3xl font-black text-indigo-700">KantSpeak - Painel do Pesquisador</h1>
+      <p class="text-gray-500">Monitoramento, experimentos e análise de dados</p>
     </div>
-    <script src="dashboard.js"></script>
+    <a href="../frontend/home.html" id="logoutBtn" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-full text-sm font-bold transition">Sair</a>
+  </div>
+
+  <!-- Cards de resumo -->
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+    <div class="stat-card bg-white rounded-2xl shadow p-4">
+      <div class="text-gray-500 text-sm">Total de sessões</div>
+      <div class="text-3xl font-bold" id="totalSessions">0</div>
+    </div>
+    <div class="stat-card bg-white rounded-2xl shadow p-4">
+      <div class="text-gray-500 text-sm">Média de acertos (%)</div>
+      <div class="text-3xl font-bold" id="avgAccuracy">0%</div>
+    </div>
+    <div class="stat-card bg-white rounded-2xl shadow p-4">
+      <div class="text-gray-500 text-sm">Tempo médio por atividade (s)</div>
+      <div class="text-3xl font-bold" id="avgTime">0</div>
+    </div>
+    <div class="stat-card bg-white rounded-2xl shadow p-4">
+      <div class="text-gray-500 text-sm">Experimento ativo</div>
+      <div class="text-3xl font-bold text-green-600" id="activeExp">Nenhum</div>
+    </div>
+  </div>
+
+  <!-- Gráficos -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+    <div class="bg-white rounded-2xl shadow p-4">
+      <h2 class="text-xl font-bold mb-3">📊 Acertos por atividade</h2>
+      <canvas id="accuracyChart" height="200"></canvas>
+    </div>
+    <div class="bg-white rounded-2xl shadow p-4">
+      <h2 class="text-xl font-bold mb-3">⏱️ Tempo médio de resposta (atividade)</h2>
+      <canvas id="timeChart" height="200"></canvas>
+    </div>
+  </div>
+
+  <!-- Comparação entre grupos experimentais -->
+  <div class="bg-white rounded-2xl shadow p-4 mb-8">
+    <h2 class="text-xl font-bold mb-3">🧪 Comparação entre Grupos (experimento ativo)</h2>
+    <canvas id="groupCompareChart" height="200"></canvas>
+  </div>
+
+  <!-- Controle de experimentos -->
+  <div class="bg-white rounded-2xl shadow p-4 mb-8">
+    <h2 class="text-xl font-bold mb-3">⚙️ Gerenciar Experimentos</h2>
+    <div class="flex flex-wrap gap-4">
+      <div class="flex-1">
+        <label class="block text-sm font-medium mb-1">Carregar novo experimento (JSON)</label>
+        <input type="file" id="expFile" accept=".json" class="border rounded-lg p-2 w-full">
+        <button id="uploadExpBtn" class="mt-2 bg-indigo-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-indigo-700 transition">📤 Ativar experimento</button>
+      </div>
+      <div class="flex-1">
+        <label class="block text-sm font-medium mb-1">Exportar dados</label>
+        <div class="flex gap-2">
+          <button id="exportCSVBtn" class="bg-green-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-green-700 transition">📄 CSV</button>
+          <button id="exportJSONBtn" class="bg-blue-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-blue-700 transition">📋 JSON</button>
+          <button id="refreshBtn" class="bg-gray-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-gray-700 transition">🔄 Atualizar</button>
+        </div>
+      </div>
+    </div>
+    <div id="uploadFeedback" class="mt-3 text-sm"></div>
+  </div>
+
+  <!-- Logs recentes -->
+  <div class="bg-white rounded-2xl shadow p-4">
+    <h2 class="text-xl font-bold mb-3">Últimos eventos (log)</h2>
+    <div class="log-table">
+      <table class="min-w-full text-sm" id="logTable">
+        <thead class="bg-gray-100 sticky top-0">
+          <tr><th class="p-2 text-left">Timestamp</th><th class="p-2 text-left">Sessão</th><th class="p-2 text-left">Atividade</th><th class="p-2 text-left">Evento</th><th class="p-2 text-left">Dados</th></tr>
+        </thead>
+        <tbody id="logTableBody"></tbody>
+       </table>
+    </div>
+  </div>
+</div>
+
+<div id="toastMessage" style="display: none;"></div>
+
+<script src="dashboard.js"></script>
+<!-- <script>
+  // Proteção simples (exemplo: senha fixa)
+  const senha = prompt("Acesso restrito ao pesquisador. Digite a senha:");
+  if (senha !== "kant2026") {
+    alert("Senha incorreta. Acesso negado.");
+    window.location.href = "../home.html";
+  }
+</script> -->
 </body>
 </html>

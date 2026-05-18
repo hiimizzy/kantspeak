@@ -1,0 +1,11 @@
+[
+    {
+        "session": "1778005251181",
+        "activity": "alphabet",
+        "event": "instrumentation_ready",
+        "timestamp": 1778005251.667,
+        "data": {
+            "version": "2.0"
+        }
+    }
+]

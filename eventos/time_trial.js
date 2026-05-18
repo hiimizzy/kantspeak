@@ -3,7 +3,7 @@ const SESSION_ID = localStorage.getItem('kant_session') || Date.now().toString()
 localStorage.setItem('kant_session', SESSION_ID);
 
 function logEvent(eventType, payload) {
-    fetch('../instrument.php', {
+fetch('/instrument.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -52,7 +52,7 @@ const vocabulary = [
 // ========== API Calls ==========
 async function fetchScore() {
     try {
-        const resp = await fetch('../api.php?action=getScore');
+fetch('/api.php?action=getScore')
         const data = await resp.json();
         currentScore = data.score || 0;
         scoreSpan.textContent = currentScore;
@@ -62,7 +62,7 @@ async function fetchScore() {
 
 async function fetchExperimentGroup() {
     try {
-        const resp = await fetch('../api.php?action=get_experiment_group&activity=timetrial');
+fetch('/api.php?action=get_experiment_group&activity=timetrial')
         const data = await resp.json();
         if (data.group) {
             experimentGroup = data.group;
@@ -73,7 +73,7 @@ async function fetchExperimentGroup() {
 
 async function fetchCurrentWord() {
     try {
-        const resp = await fetch('../api.php?action=getItem&activity=timetrial');
+fetch('/api.php?action=getItem&activity=timetrial')
         const data = await resp.json();
         if (data.success && data.item) {
             currentWordObj = data.item;
@@ -107,7 +107,7 @@ async function sendAnswer(selectedWord) {
     formData.append('time_limit', currentTimeLimit);
     formData.append('group', experimentGroup);
     try {
-        const resp = await fetch('../api.php', { method: 'POST', body: formData });
+fetch('/api.php', { method: 'POST', body: formData })
         const data = await resp.json();
         if (data.success) {
             const isCorrect = data.feedback.includes('Correct');

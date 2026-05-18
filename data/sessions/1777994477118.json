@@ -1,0 +1,88 @@
+[
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "camera_start",
+        "timestamp": 1778007673.671,
+        "data": {
+            "success": true
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_start",
+        "timestamp": 1778007681.102,
+        "data": {
+            "letter": "A"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_end",
+        "timestamp": 1778007685.046,
+        "data": {
+            "letter": "A",
+            "points": 60
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "check",
+        "timestamp": 1778007686.789,
+        "data": {
+            "letter": "A",
+            "correct": true,
+            "reactionTime": 18.62890000000596,
+            "pointsEarned": 10,
+            "drawingPoints": 60
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "session_start",
+        "timestamp": 1778007686.895,
+        "data": {
+            "letter": "B"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "clear",
+        "timestamp": 1778007686.896,
+        "data": {
+            "letter": "B"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "speak_hint",
+        "timestamp": 1778007693.845,
+        "data": {
+            "letter": "B"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "session_start",
+        "timestamp": 1778007760.554,
+        "data": {
+            "letter": "B"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "session_start",
+        "timestamp": 1778011375.286,
+        "data": {
+            "letter": "B"
+        }
+    }
+]
