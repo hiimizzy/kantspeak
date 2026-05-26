@@ -1,0 +1,128 @@
+[
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "session_start",
+        "timestamp": 1779827042.828,
+        "data": {
+            "letter": "A"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "camera_start",
+        "timestamp": 1779827047.859,
+        "data": {
+            "success": true
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_start",
+        "timestamp": 1779827061.555,
+        "data": {
+            "letter": "A"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_end",
+        "timestamp": 1779827061.578,
+        "data": {
+            "letter": "A",
+            "points": 1
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_start",
+        "timestamp": 1779827061.622,
+        "data": {
+            "letter": "A"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_end",
+        "timestamp": 1779827061.703,
+        "data": {
+            "letter": "A",
+            "points": 2
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_start",
+        "timestamp": 1779827061.95,
+        "data": {
+            "letter": "A"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_end",
+        "timestamp": 1779827063.008,
+        "data": {
+            "letter": "A",
+            "points": 18
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_start",
+        "timestamp": 1779827063.064,
+        "data": {
+            "letter": "A"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_end",
+        "timestamp": 1779827063.655,
+        "data": {
+            "letter": "A",
+            "points": 27,
+            "reason": "hand_lost"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "check",
+        "timestamp": 1779827065.082,
+        "data": {
+            "letter": "A",
+            "correct": true,
+            "reactionTime": 22.233,
+            "pointsEarned": 10,
+            "drawingPoints": 27
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "session_start",
+        "timestamp": 1779827719.369,
+        "data": {
+            "letter": "B"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "instrumentation_ready",
+        "timestamp": 1779827719.399,
+        "data": {
+            "version": "2.0"
+        }
+    }
+]
