@@ -156,7 +156,3 @@ No proprietary dependencies are required, ensuring accessibility and reproducibi
 AI-based tools were used to generate visual assets for specific interface components (e.g., karaoke module). All generated content was reviewed and validated by the authors before integration into the system.
 
 # References
-
-# Notes for Reviewers
-
-KantSpeak is explicitly designed as a **reproducible experimental research framework**, not as an educational application. Its primary contribution is enabling controlled studies of adaptive learning strategies through a modular architecture, structured logging, and offline analysis tools.
