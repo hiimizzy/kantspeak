@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__ . '/../core/Atividade.php';
-
 class TimeTrial extends Atividade {
     private array $vocabulary;
 

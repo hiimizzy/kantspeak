@@ -1,83 +1,97 @@
 <?php
-require_once 'core/AdaptiveEngine.php';
-require_once 'core/Logger.php';
-require_once 'core/SessionManager.php';
-require_once 'core/Atividade.php';
-require_once 'activities/Alphabet.php'; 
+/**
+ * adapt.php – Endpoint para seleção adaptativa da próxima atividade
+ * 
+ * Implementa Thompson Sampling contextual: cada atividade é um "braço"
+ * modelado por uma distribuição Beta(α, β), onde α = sucessos + 1, β = falhas + 1.
+ * A cada chamada, amostramos um valor de cada distribuição e escolhemos a atividade
+ * com maior amostra. Contexto (idade, nível de suporte) influencia os priors.
+ */
 
 session_start();
-
-$logger = new Logger(session_id());
-$engine = new AdaptiveEngine($logger, ['alphabet', 'listen', 'speak', 'write', 'sorting','time_trial']);
-// Recupera histórico da sessão
-$history = $_SESSION['activity_history'] ?? [];
-$next = $engine->selectNextActivity($history);
-echo json_encode(['next_activity' => $next]);
+require_once 'core/Logger.php';
+require_once 'core/SessionManager.php';
 
 $session = new SessionManager();
 $sessionId = session_id();
 
-// Carregar contexto do usuário
-$contextFile = __DIR__ . "/data/context/{$sessionId}.json";
-$context = file_exists($contextFile) ? json_decode(file_get_contents($contextFile), true) : [];
+// Diretório onde ficam os arquivos de contexto (histórico de acertos/erros por atividade)
+$contextDir = __DIR__ . '/data/context/';
+if (!is_dir($contextDir)) mkdir($contextDir, 0777, true);
+$contextFile = $contextDir . $sessionId . '.json';
 
-// Se não houver contexto, inicializar com valores padrão
+// Carrega contexto ou inicializa com valores padrão
+$context = file_exists($contextFile) ? json_decode(file_get_contents($contextFile), true) : [];
 if (empty($context)) {
+    // Tenta obter idade e nível de suporte da sessão (podem vir de um cadastro inicial)
     $context = [
         'session' => $sessionId,
-        'age' => $_SESSION['age'] ?? 7,   // se tiver formulário de cadastro
+        'age' => $_SESSION['age'] ?? 7,
         'support_level' => $_SESSION['support_level'] ?? 1,
         'activities' => [],
         'last_update' => time()
     ];
 }
 
-// Lista de atividades disponíveis
+// Lista de todas as atividades disponíveis no sistema
 $activityList = ['alphabet', 'listen', 'speak', 'write', 'sorting'];
 
-// Parâmetros da distribuição Beta para cada atividade
+// Calcula pontuação (amostra) para cada atividade usando Thompson Sampling
 $scores = [];
 foreach ($activityList as $act) {
-    $history = $context['activities'][$act] ?? ['success' => 0, 'failure' => 0];
-    // Adiciona os hiperparâmetros (prior) – quanto maior, mais a média inicial puxa para 0.5
-    $alpha = $history['success'] + 1;
-    $beta  = $history['failure'] + 1;
+    $hist = $context['activities'][$act] ?? ['success' => 0, 'failure' => 0];
+    // Priors: +1 para sucessos e falhas (distribuição uniforme a priori)
+    $alpha = $hist['success'] + 1;
+    $beta  = $hist['failure'] + 1;
     
-    // Ajuste contextual (exemplo: se a criança é mais velha, favorecer atividades mais complexas)
+    // Ajustes contextuais simples (exemplo: idade influencia a dificuldade preferida)
     if ($act === 'write' && $context['age'] >= 10) {
-        $alpha += 2; // aumenta a média simulada
+        $alpha += 2;          // criança mais velha tem "prior" melhor para escrita
     }
     if ($act === 'alphabet' && $context['age'] <= 6) {
-        $beta -= 0.5; // reduz a penalidade (torna mais fácil)
+        $beta -= 0.5;         // criança mais nova tem falhas menos penalizadas no alfabeto
+        // Garantir que beta não fique <= 0
+        if ($beta < 0.1) $beta = 0.1;
     }
     
-    // Geração de amostra da distribuição Beta (usando aproximação Gamma ou função built-in)
-    // Como PHP não tem função direta, usaremos uma aproximação:
+    // Amostra da distribuição Beta(α, β)
     $theta = beta_sample($alpha, $beta);
     $scores[$act] = $theta;
 }
 
-// Seleciona a atividade com maior amostra
+// Escolhe a atividade com maior amostra
 arsort($scores);
 $nextActivity = key($scores);
 
-// Salva o contexto atualizado (apenas a parte de histórico será atualizada quando chegar o evento "check")
+// (Opcional) Registra a decisão no log de eventos do usuário
+$logger = new Logger($sessionId);
+$logger->logEvent('adaptive', 'decision', [
+    'scores' => $scores,
+    'selected' => $nextActivity,
+    'context' => ['age' => $context['age'], 'support_level' => $context['support_level']]
+]);
+
+// Atualiza apenas o timestamp (o histórico será modificado pelo api.php quando houver um "check")
+$context['last_update'] = time();
 file_put_contents($contextFile, json_encode($context, JSON_PRETTY_PRINT));
 
 header('Content-Type: application/json');
 echo json_encode(['next_activity' => $nextActivity]);
 
-// Função auxiliar para amostrar da Beta (usando método de rejeição, simples)
+/**
+ * Gera uma amostra da distribuição Beta(α, β) usando o método de Johnk (válido para α, β > 0).
+ * Este método é robusto mesmo para valores não inteiros.
+ */
 function beta_sample($alpha, $beta) {
-    // Se $alpha e $beta são inteiros pequenos, podemos usar o método de 
-    // distribuição Gamma via relação com distribuição de Poisson.
-    // Uma implementação simples (não eficiente mas funcional):
-    $x = 0;
-    $y = 0;
+    // Método de Johnk:
+    // Seja X = pow(U1, 1/α) e Y = pow(U2, 1/β), com U1, U2 uniformes(0,1).
+    // Aceita se X + Y <= 1; então retorna X / (X + Y).
     do {
-        $x = pow(rand() / getrandmax(), 1/$alpha);
-        $y = pow(rand() / getrandmax(), 1/$beta);
-    } while ($x + $y > 1);
+        $u1 = mt_rand() / mt_getrandmax();
+        $u2 = mt_rand() / mt_getrandmax();
+        $x = pow($u1, 1.0 / $alpha);
+        $y = pow($u2, 1.0 / $beta);
+    } while ($x + $y > 1.0);
     return $x / ($x + $y);
 }
 ?>
