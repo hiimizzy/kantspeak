@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+
 """
 Main script to run offline analysis on KantSpeak logs.
 Generates summary statistics, plots, and exports results.

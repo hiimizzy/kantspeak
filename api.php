@@ -92,11 +92,16 @@ $activities = [
 ];
 
 $vocabulary = [
-    ["word" => "CAT", "emoji" => "🐱"], ["word" => "DOG", "emoji" => "🐕"],
-    ["word" => "SUN", "emoji" => "☀️"], ["word" => "APPLE", "emoji" => "🍎"],
-    ["word" => "CAR", "emoji" => "🚗"], ["word" => "BIRD", "emoji" => "🐦"],
-    ["word" => "FISH", "emoji" => "🐠"], ["word" => "STAR", "emoji" => "⭐"],
-    ["word" => "HOUSE", "emoji" => "🏠"], ["word" => "BOOK", "emoji" => "📚"]
+    ["word" => "CAT", "emoji" => "🐱"],
+    ["word" => "DOG", "emoji" => "🐕"],
+    ["word" => "SUN", "emoji" => "☀️"],
+    ["word" => "APPLE", "emoji" => "🍎"],
+    ["word" => "CAR", "emoji" => "🚗"],
+    ["word" => "BIRD", "emoji" => "🐦"],
+    ["word" => "FISH", "emoji" => "🐠"],
+    ["word" => "STAR", "emoji" => "⭐"],
+    ["word" => "HOUSE", "emoji" => "🏠"],
+    ["word" => "BOOK", "emoji" => "📚"]
 ];
 
 header('Content-Type: application/json');
@@ -125,6 +130,26 @@ try {
             $act->process(['resposta' => $resposta]);
             $feedback = $session->getFeedbackAndClear();
             $score = $session->getScore();
+
+            // Atualiza o contexto do usuário
+            $sessionId = session_id();
+            $contextFile = __DIR__ . "/data/context/{$sessionId}.json";
+            if (file_exists($contextFile)) {
+                $context = json_decode(file_get_contents($contextFile), true);
+                $activityName = $activity; // 'alphabet', 'listen', etc.
+                $isCorrect = strpos($feedback, 'Acertou') !== false;
+                if (!isset($context['activities'][$activityName])) {
+                    $context['activities'][$activityName] = ['success' => 0, 'failure' => 0];
+                }
+                if ($isCorrect) {
+                    $context['activities'][$activityName]['success']++;
+                } else {
+                    $context['activities'][$activityName]['failure']++;
+                }
+                $context['last_update'] = time();
+                file_put_contents($contextFile, json_encode($context, JSON_PRETTY_PRINT));
+            }
+
             echo json_encode(['success' => true, 'feedback' => $feedback, 'score' => $score]);
             break;
 
@@ -161,7 +186,7 @@ try {
             }
             break;
 
-        // ========== NOVOS ENDPOINTS DO PAINEL DO PESQUISADOR ==========
+        // ENDPOINTS DO PAINEL DO PESQUISADOR 
         case 'get_researcher_data':
             $logFiles = glob(__DIR__ . '/data/sessions/*.json');
             $totalSessions = count($logFiles);

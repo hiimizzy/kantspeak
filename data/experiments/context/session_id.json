@@ -1,0 +1,11 @@
+{
+  "session": "1777994477118",
+  "age": 8,
+  "support_level": 1,
+  "activities": {
+    "alphabet": { "success": 12, "failure": 3 },
+    "listen": { "success": 8, "failure": 2 },
+    "speak": { "success": 5, "failure": 7 }
+  },
+  "last_update": 1778007673
+}
