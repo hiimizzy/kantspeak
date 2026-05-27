@@ -29,60 +29,7 @@ $palavras = [
     ["word" => "STAR",  "emoji" => "⭐", "translation" => "estrela"]
 ];
 
-$letras = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-
-$spyItems = [
-    ["letter" => "A", "word" => "Apple", "emoji" => "🍎", "hint" => "starts with A, it's a red fruit"],
-    ["letter" => "B", "word" => "Ball",  "emoji" => "⚽", "hint" => "starts with B, you can kick it"],
-    ["letter" => "C", "word" => "Cat",   "emoji" => "🐱", "hint" => "starts with C, it says meow"],
-    ["letter" => "D", "word" => "Dog",   "emoji" => "🐕", "hint" => "starts with D, it barks"],
-    ["letter" => "E", "word" => "Egg",   "emoji" => "🥚", "hint" => "starts with E, it can be scrambled"],
-    ["letter" => "F", "word" => "Fish",  "emoji" => "🐠", "hint" => "starts with F, it swims"],
-    ["letter" => "G", "word" => "Guitar",  "emoji" => "🎸", "hint" => "starts with G, you can strum it"],
-    ["letter" => "H", "word" => "House",  "emoji" => "🏠", "hint" => "starts with H, it's where you live"],
-    ["letter" => "I", "word" => "Ice Cream",  "emoji" => "🍦", "hint" => "starts with I, it's a cold treat"],
-    ["letter" => "J", "word" => "Juice",  "emoji" => "🧃", "hint" => "starts with J, it's a drink"],
-    ["letter" => "K", "word" => "Kite",  "emoji" => "🪁", "hint" => "starts with K, it flies in the sky"],
-    ["letter" => "L", "word" => "Lion",  "emoji" => "🦁", "hint" => "starts with L, it's the king of the jungle"],
-    ["letter" => "M", "word" => "Moon",  "emoji" => "🌙", "hint" => "starts with M, it shines at night"],
-    ["letter" => "N", "word" => "Nose",  "emoji" => "👃", "hint" => "starts with N, it's on your face"]
-];
-
-$buildWords = [
-    ["word" => "CAT", "emoji" => "🐱", "syllables" => ["CA", "T"]],
-    ["word" => "DOG", "emoji" => "🐕", "syllables" => ["DO", "G"]],
-    ["word" => "SUN", "emoji" => "☀️", "syllables" => ["SU", "N"]],
-    ["word" => "FISH", "emoji" => "🐠", "syllables" => ["FI", "SH"]],
-    ["word" => "BIRD", "emoji" => "🐦", "syllables" => ["BI", "RD"]],
-    ["word" => "APPLE", "emoji" => "🍎", "syllables" => ["AP", "PLE"]],
-    ["word" => "STAR", "emoji" => "⭐", "syllables" => ["ST", "AR"]],
-    ["word" => "CAR", "emoji" => "🚗", "syllables" => ["CA", "R"]],
-    ["word" => "HOUSE", "emoji" => "🏠", "syllables" => ["HO", "USE"]],
-    ["word" => "BOOK", "emoji" => "📚", "syllables" => ["BO", "OK"]],
-    ["word" => "MOON", "emoji" => "🌙", "syllables" => ["MO", "ON"]],
-    ["word" => "LION", "emoji" => "🦁", "syllables" => ["LI", "ON"]],
-    ["word" => "GUITAR", "emoji" => "🎸", "syllables" => ["GUI", "TAR"]],
-    ["word" => "JUICE", "emoji" => "🧃", "syllables" => ["JU", "ICE"]],
-    ["word" => "KITE", "emoji" => "🪁", "syllables" => ["KI", "TE"]],
-    ["word" => "HOUSE", "emoji" => "🏠", "syllables" => ["HO", "USE"]],
-    ["word" => "EYES", "emoji" => "👀", "syllables" => ["EY", "ES"]],
-    ["word" => "NOSE", "emoji" => "👃", "syllables" => ["NO", "SE"]],
-    ["word" => "MOUTH", "emoji" => "👄", "syllables" => ["MO", "UTH"]],
-    ["word" => "HAND", "emoji" => "✋", "syllables" => ["HA", "ND"]],
-    ["word" => "FOOT", "emoji" => "🦶", "syllables" => ["FO", "OT"]],
-    ["word" => "EAR", "emoji" => "👂", "syllables" => ["EA", "R"]],
-    ["word" => "HAIR", "emoji" => "💇‍♂️", "syllables" => ["HA", "IR"]],
-    ["word" => "FACE", "emoji" => "😀", "syllables" => ["FA", "CE"]],
-    ["word" => "BODY", "emoji" => "🧍‍♂️", "syllables" => ["BO", "DY"]],
-    ["word" => "TREE", "emoji" => "🌳", "syllables" => ["TR", "EE"]],
-    ["word" => "FLOWER", "emoji" => "🌸", "syllables" => ["FLO", "WER"]],
-    ["word" => "GRASS", "emoji" => "🌿", "syllables" => ["GRA", "SS"]],
-    ["word" => "WATER", "emoji" => "💧", "syllables" => ["WA", "TER"]],
-    ["word" => "FIRE", "emoji" => "🔥", "syllables" => ["FI", "RE"]],
-    ["word" => "EARTH", "emoji" => "🌍", "syllables" => ["EA", "RTH"]],
-    ["word" => "AIR", "emoji" => "💨", "syllables" => ["AI", "R"]]
-];
-
+$letras = range('A', 'Z');
 
 $vocabulary = [
     ["word" => "CAT", "emoji" => "🐱"],
@@ -110,70 +57,40 @@ header('Content-Type: application/json');
 $action   = $_POST['action'] ?? $_GET['action'] ?? '';
 $activity = $_POST['activity'] ?? $_GET['activity'] ?? '';
 
-error_log("API called: action=$action, activity=$activity");
-if (!$action || !isset($activities[$activity])) {
+// ========== AÇÕES PÚBLICAS (NÃO PRECISAM DE ACTIVITY) ==========
+$actionsWithoutActivity = ['get_researcher_data', 'export_logs', 'upload_experiment', 'getScore', 'get_experiment_group'];
+
+if (!$action) {
     http_response_code(400);
-    echo json_encode(['error' => 'Ação ou atividade inválida: ' . $activity]);
+    echo json_encode(['error' => 'Ação inválida']);
     exit;
 }
 
-$act = $activities[$activity];
-// Processa a ação solicitada
+if (in_array($action, $actionsWithoutActivity, true)) {
+    // Não exige activity
+} else {
+    // Ações que precisam de activity
+    if (!$activity || !isset($activities[$activity])) {
+        http_response_code(400);
+        echo json_encode(['error' => 'Atividade inválida: ' . $activity]);
+        exit;
+    }
+    $act = $activities[$activity];
+}
+
+
 try {
     switch ($action) {
-        case 'getItem':
-            $item = $act->getCurrentItem();
-            echo json_encode(['success' => true, 'item' => $item]);
-            break;
-
-        case 'check':
-            $resposta = $_POST['resposta'] ?? '';
-            $act->process(['resposta' => $resposta]);
-            $feedback = $session->getFeedbackAndClear();
-            $score = $session->getScore();
-
-            // Atualiza o contexto do usuário
-            $sessionId = session_id();
-            $contextFile = __DIR__ . "/data/context/{$sessionId}.json";
-            if (file_exists($contextFile)) {
-                $context = json_decode(file_get_contents($contextFile), true);
-                $activityName = $activity; // 'alphabet', 'listen', etc.
-                $isCorrect = strpos($feedback, 'Acertou') !== false;
-                if (!isset($context['activities'][$activityName])) {
-                    $context['activities'][$activityName] = ['success' => 0, 'failure' => 0];
-                }
-                if ($isCorrect) {
-                    $context['activities'][$activityName]['success']++;
-                } else {
-                    $context['activities'][$activityName]['failure']++;
-                }
-                $context['last_update'] = time();
-                file_put_contents($contextFile, json_encode($context, JSON_PRETTY_PRINT));
-            }
-
-            echo json_encode(['success' => true, 'feedback' => $feedback, 'score' => $score]);
-            break;
-
-        case 'next':
-            $act->advance();
-            $newItem = $act->getCurrentItem();
-            echo json_encode(['success' => true, 'item' => $newItem]);
-            break;
-
+        // ----- Ações públicas -----
         case 'getScore':
             echo json_encode(['score' => $session->getScore()]);
-            break;
-
-        case 'getAllItems':
-            echo json_encode(['success' => true, 'items' => $act->getAllItems()]);
             break;
 
         case 'get_experiment_group':
             $expFile = __DIR__ . '/data/experiments/active.json';
             if (file_exists($expFile)) {
                 $exp = json_decode(file_get_contents($expFile), true);
-                $sessionId = session_id();
-                $hash = crc32($sessionId) % 100;
+                $hash = crc32(session_id()) % 100;
                 $group = 'control';
                 foreach ($exp['groups'] as $g => $range) {
                     if ($hash >= $range[0] && $hash < $range[1]) {
@@ -187,7 +104,6 @@ try {
             }
             break;
 
-        // ENDPOINTS DO PAINEL DO PESQUISADOR 
         case 'get_researcher_data':
             $logFiles = glob(__DIR__ . '/data/sessions/*.json');
             $totalSessions = count($logFiles);
@@ -267,7 +183,7 @@ try {
                 header('Content-Type: application/json');
                 echo json_encode($allEvents, JSON_PRETTY_PRINT);
             }
-            exit;
+            break;
 
         case 'upload_experiment':
             if (isset($_FILES['experiment_config']) && $_FILES['experiment_config']['error'] === UPLOAD_ERR_OK) {
@@ -282,11 +198,56 @@ try {
             } else {
                 echo json_encode(['success' => false, 'error' => 'Nenhum arquivo enviado']);
             }
-            exit;
+            break;
+
+        // ----- Ações que precisam de activity -----
+        case 'getItem':
+            $item = $act->getCurrentItem();
+            echo json_encode(['success' => true, 'item' => $item]);
+            break;
+
+        case 'check':
+            $resposta = $_POST['resposta'] ?? '';
+            $act->process(['resposta' => $resposta]);
+            $feedback = $session->getFeedbackAndClear();
+            $score = $session->getScore();
+
+            // Atualiza contexto (opcional)
+            $sessionId = session_id();
+            $contextFile = __DIR__ . "/data/context/{$sessionId}.json";
+            if (file_exists($contextFile)) {
+                $context = json_decode(file_get_contents($contextFile), true);
+                $isCorrect = strpos($feedback, 'Acertou') !== false;
+                if (!isset($context['activities'][$activity])) {
+                    $context['activities'][$activity] = ['success' => 0, 'failure' => 0];
+                }
+                if ($isCorrect) {
+                    $context['activities'][$activity]['success']++;
+                } else {
+                    $context['activities'][$activity]['failure']++;
+                }
+                $context['last_update'] = time();
+                file_put_contents($contextFile, json_encode($context, JSON_PRETTY_PRINT));
+            }
+
+            echo json_encode(['success' => true, 'feedback' => $feedback, 'score' => $score]);
+            break;
+
+        case 'next':
+            $act->advance();
+            $newItem = $act->getCurrentItem();
+            echo json_encode(['success' => true, 'item' => $newItem]);
+            break;
+
+        case 'getAllItems':
+            echo json_encode(['success' => true, 'items' => $act->getAllItems()]);
+            break;
 
         default:
-            echo json_encode(['error' => 'Ação desconhecida']);
+            http_response_code(400);
+            echo json_encode(['error' => 'Ação desconhecida: ' . $action]);
     }
 } catch (Throwable $e) {
+    http_response_code(500);
     echo json_encode(['error' => $e->getMessage()]);
 }
