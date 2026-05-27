@@ -124,5 +124,825 @@
         "data": {
             "version": "2.0"
         }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "timetrial",
+        "event": "group_assignment",
+        "timestamp": 1779923269.63,
+        "data": {
+            "exp": "TimeTrial_AdaptiveTime_vs_Fixed",
+            "group": "adaptive"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "timetrial",
+        "event": "mode_change",
+        "timestamp": 1779923272.421,
+        "data": {
+            "mode": "relax"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "timetrial",
+        "event": "check",
+        "timestamp": 1779923275.305,
+        "data": {
+            "selected": "CAT",
+            "correct": true,
+            "reactionTime": 9.999999403953553e-5,
+            "pointsEarned": 10,
+            "time_limit": 5,
+            "group": "adaptive"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "timetrial",
+        "event": "session_start",
+        "timestamp": 1779923275.374,
+        "data": {
+            "word": "DOG",
+            "group": "adaptive"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "timetrial",
+        "event": "mode_change",
+        "timestamp": 1779923276.643,
+        "data": {
+            "mode": "timed"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "timetrial",
+        "event": "check",
+        "timestamp": 1779923278.148,
+        "data": {
+            "selected": "DOG",
+            "correct": true,
+            "reactionTime": 0,
+            "pointsEarned": 10,
+            "time_limit": 5.5,
+            "group": "adaptive"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "timetrial",
+        "event": "session_start",
+        "timestamp": 1779923278.196,
+        "data": {
+            "word": "SUN",
+            "group": "adaptive"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "session_start",
+        "timestamp": 1779923495.69,
+        "data": {
+            "letter": "A"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "instrumentation_ready",
+        "timestamp": 1779923495.737,
+        "data": {
+            "version": "2.0"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "camera_start",
+        "timestamp": 1779923503.491,
+        "data": {
+            "success": true
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_start",
+        "timestamp": 1779923522.096,
+        "data": {
+            "letter": "A"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_end",
+        "timestamp": 1779923524.295,
+        "data": {
+            "letter": "A",
+            "points": 63
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_start",
+        "timestamp": 1779923524.389,
+        "data": {
+            "letter": "A"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_end",
+        "timestamp": 1779923525.48,
+        "data": {
+            "letter": "A",
+            "points": 96
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_start",
+        "timestamp": 1779923525.821,
+        "data": {
+            "letter": "A"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_end",
+        "timestamp": 1779923525.947,
+        "data": {
+            "letter": "A",
+            "points": 100
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_start",
+        "timestamp": 1779923526.812,
+        "data": {
+            "letter": "A"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_end",
+        "timestamp": 1779923526.893,
+        "data": {
+            "letter": "A",
+            "points": 102
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_start",
+        "timestamp": 1779923526.951,
+        "data": {
+            "letter": "A"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_end",
+        "timestamp": 1779923526.988,
+        "data": {
+            "letter": "A",
+            "points": 103
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_start",
+        "timestamp": 1779923527.021,
+        "data": {
+            "letter": "A"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_end",
+        "timestamp": 1779923527.082,
+        "data": {
+            "letter": "A",
+            "points": 105
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_start",
+        "timestamp": 1779923527.175,
+        "data": {
+            "letter": "A"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_end",
+        "timestamp": 1779923527.79,
+        "data": {
+            "letter": "A",
+            "points": 123,
+            "reason": "hand_lost"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_start",
+        "timestamp": 1779923527.897,
+        "data": {
+            "letter": "A"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_end",
+        "timestamp": 1779923527.921,
+        "data": {
+            "letter": "A",
+            "points": 124
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_start",
+        "timestamp": 1779923528.045,
+        "data": {
+            "letter": "A"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_end",
+        "timestamp": 1779923528.197,
+        "data": {
+            "letter": "A",
+            "points": 128
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_start",
+        "timestamp": 1779923528.239,
+        "data": {
+            "letter": "A"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_end",
+        "timestamp": 1779923528.565,
+        "data": {
+            "letter": "A",
+            "points": 138
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_start",
+        "timestamp": 1779923528.636,
+        "data": {
+            "letter": "A"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_end",
+        "timestamp": 1779923530.044,
+        "data": {
+            "letter": "A",
+            "points": 181
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_start",
+        "timestamp": 1779923530.074,
+        "data": {
+            "letter": "A"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_end",
+        "timestamp": 1779923530.139,
+        "data": {
+            "letter": "A",
+            "points": 183
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_start",
+        "timestamp": 1779923530.374,
+        "data": {
+            "letter": "A"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_end",
+        "timestamp": 1779923530.904,
+        "data": {
+            "letter": "A",
+            "points": 199
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_start",
+        "timestamp": 1779923530.969,
+        "data": {
+            "letter": "A"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_end",
+        "timestamp": 1779923531.476,
+        "data": {
+            "letter": "A",
+            "points": 214
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_start",
+        "timestamp": 1779923531.554,
+        "data": {
+            "letter": "A"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_end",
+        "timestamp": 1779923531.741,
+        "data": {
+            "letter": "A",
+            "points": 220
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_start",
+        "timestamp": 1779923531.773,
+        "data": {
+            "letter": "A"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_end",
+        "timestamp": 1779923531.84,
+        "data": {
+            "letter": "A",
+            "points": 222
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_start",
+        "timestamp": 1779923533.167,
+        "data": {
+            "letter": "A"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "draw_end",
+        "timestamp": 1779923533.195,
+        "data": {
+            "letter": "A",
+            "points": 223
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "alphabet",
+        "event": "check",
+        "timestamp": 1779923534.732,
+        "data": {
+            "letter": "A",
+            "correct": true,
+            "reactionTime": 38.93280000001192,
+            "pointsEarned": 10,
+            "drawingPoints": 223
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "timetrial",
+        "event": "group_assignment",
+        "timestamp": 1779923600.852,
+        "data": {
+            "exp": "TimeTrial_AdaptiveTime_vs_Fixed",
+            "group": "adaptive"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "timetrial",
+        "event": "session_start",
+        "timestamp": 1779923600.893,
+        "data": {
+            "word": "SUN",
+            "group": "adaptive"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "timetrial",
+        "event": "check",
+        "timestamp": 1779923602.824,
+        "data": {
+            "selected": "SUN",
+            "correct": true,
+            "reactionTime": 0,
+            "pointsEarned": 10,
+            "time_limit": 5,
+            "group": "adaptive"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "timetrial",
+        "event": "session_start",
+        "timestamp": 1779923602.957,
+        "data": {
+            "word": "APPLE",
+            "group": "adaptive"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "timetrial",
+        "event": "check",
+        "timestamp": 1779923605.153,
+        "data": {
+            "selected": "APPLE",
+            "correct": true,
+            "reactionTime": 0,
+            "pointsEarned": 10,
+            "time_limit": 5.5,
+            "group": "adaptive"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "timetrial",
+        "event": "session_start",
+        "timestamp": 1779923605.223,
+        "data": {
+            "word": "CAR",
+            "group": "adaptive"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "timetrial",
+        "event": "check",
+        "timestamp": 1779923606.714,
+        "data": {
+            "selected": "CAR",
+            "correct": true,
+            "reactionTime": 0,
+            "pointsEarned": 10,
+            "time_limit": 6,
+            "group": "adaptive"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "timetrial",
+        "event": "session_start",
+        "timestamp": 1779923606.754,
+        "data": {
+            "word": "BIRD",
+            "group": "adaptive"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "timetrial",
+        "event": "check",
+        "timestamp": 1779923608.942,
+        "data": {
+            "selected": "BIRD",
+            "correct": true,
+            "reactionTime": 0,
+            "pointsEarned": 10,
+            "time_limit": 6.5,
+            "group": "adaptive"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "timetrial",
+        "event": "session_start",
+        "timestamp": 1779923608.983,
+        "data": {
+            "word": "FISH",
+            "group": "adaptive"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "timetrial",
+        "event": "check",
+        "timestamp": 1779923610.703,
+        "data": {
+            "selected": "FISH",
+            "correct": true,
+            "reactionTime": 0,
+            "pointsEarned": 10,
+            "time_limit": 7,
+            "group": "adaptive"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "timetrial",
+        "event": "session_start",
+        "timestamp": 1779923610.744,
+        "data": {
+            "word": "STAR",
+            "group": "adaptive"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "timetrial",
+        "event": "check",
+        "timestamp": 1779923612.65,
+        "data": {
+            "selected": "STAR",
+            "correct": true,
+            "reactionTime": 0,
+            "pointsEarned": 10,
+            "time_limit": 7.5,
+            "group": "adaptive"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "timetrial",
+        "event": "session_start",
+        "timestamp": 1779923612.678,
+        "data": {
+            "word": "HOUSE",
+            "group": "adaptive"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "timetrial",
+        "event": "check",
+        "timestamp": 1779923614.177,
+        "data": {
+            "selected": "HOUSE",
+            "correct": true,
+            "reactionTime": 0,
+            "pointsEarned": 10,
+            "time_limit": 8,
+            "group": "adaptive"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "timetrial",
+        "event": "session_start",
+        "timestamp": 1779923614.441,
+        "data": {
+            "word": "BOOK",
+            "group": "adaptive"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "timetrial",
+        "event": "check",
+        "timestamp": 1779923615.528,
+        "data": {
+            "selected": "BOOK",
+            "correct": true,
+            "reactionTime": 0,
+            "pointsEarned": 10,
+            "time_limit": 8,
+            "group": "adaptive"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "timetrial",
+        "event": "session_start",
+        "timestamp": 1779923615.56,
+        "data": {
+            "word": "CAT",
+            "group": "adaptive"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "timetrial",
+        "event": "check",
+        "timestamp": 1779923616.653,
+        "data": {
+            "selected": "CAT",
+            "correct": true,
+            "reactionTime": 0,
+            "pointsEarned": 10,
+            "time_limit": 8,
+            "group": "adaptive"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "timetrial",
+        "event": "session_start",
+        "timestamp": 1779923616.687,
+        "data": {
+            "word": "DOG",
+            "group": "adaptive"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "timetrial",
+        "event": "check",
+        "timestamp": 1779923617.81,
+        "data": {
+            "selected": "DOG",
+            "correct": true,
+            "reactionTime": 0,
+            "pointsEarned": 10,
+            "time_limit": 8,
+            "group": "adaptive"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "timetrial",
+        "event": "session_start",
+        "timestamp": 1779923617.846,
+        "data": {
+            "word": "SUN",
+            "group": "adaptive"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "timetrial",
+        "event": "check",
+        "timestamp": 1779923619.825,
+        "data": {
+            "selected": "SUN",
+            "correct": true,
+            "reactionTime": 0,
+            "pointsEarned": 10,
+            "time_limit": 8,
+            "group": "adaptive"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "timetrial",
+        "event": "session_start",
+        "timestamp": 1779923619.852,
+        "data": {
+            "word": "APPLE",
+            "group": "adaptive"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "timetrial",
+        "event": "check",
+        "timestamp": 1779923621.316,
+        "data": {
+            "selected": "APPLE",
+            "correct": true,
+            "reactionTime": 0,
+            "pointsEarned": 10,
+            "time_limit": 8,
+            "group": "adaptive"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "timetrial",
+        "event": "session_start",
+        "timestamp": 1779923621.36,
+        "data": {
+            "word": "CAR",
+            "group": "adaptive"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "timetrial",
+        "event": "mode_change",
+        "timestamp": 1779923627.434,
+        "data": {
+            "mode": "relax"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "timetrial",
+        "event": "session_start",
+        "timestamp": 1779923630.45,
+        "data": {
+            "word": "CAR",
+            "group": "adaptive"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "timetrial",
+        "event": "check",
+        "timestamp": 1779923632.826,
+        "data": {
+            "selected": "CAR",
+            "correct": true,
+            "reactionTime": 9.999999403953553e-5,
+            "pointsEarned": 10,
+            "time_limit": 8,
+            "group": "adaptive"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "timetrial",
+        "event": "session_start",
+        "timestamp": 1779923632.964,
+        "data": {
+            "word": "BIRD",
+            "group": "adaptive"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "timetrial",
+        "event": "mode_change",
+        "timestamp": 1779923635.263,
+        "data": {
+            "mode": "timed"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "timetrial",
+        "event": "group_assignment",
+        "timestamp": 1779923647.857,
+        "data": {
+            "exp": "TimeTrial_AdaptiveTime_vs_Fixed",
+            "group": "adaptive"
+        }
+    },
+    {
+        "session": "1777994477118",
+        "activity": "timetrial",
+        "event": "session_start",
+        "timestamp": 1779923647.898,
+        "data": {
+            "word": "BIRD",
+            "group": "adaptive"
+        }
     }
 ]

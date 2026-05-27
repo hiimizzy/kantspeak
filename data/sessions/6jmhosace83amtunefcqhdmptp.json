@@ -1,0 +1,22 @@
+[
+    {
+        "timestamp": 1779923534.785439,
+        "session": "6jmhosace83amtunefcqhdmptp",
+        "activity": "adaptive",
+        "event": "decision",
+        "data": {
+            "scores": {
+                "sorting": 0.9883764028889748,
+                "write": 0.8274554877650766,
+                "alphabet": 0.7084567597233448,
+                "listen": 0.43447748003470693,
+                "speak": 0.26956067494622316
+            },
+            "selected": "sorting",
+            "context": {
+                "age": 7,
+                "support_level": 1
+            }
+        }
+    }
+]
