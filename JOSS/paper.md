@@ -91,7 +91,7 @@ No proprietary dependencies are required, ensuring accessibility and reproducibi
 
 # Figures
 
-![Main interface of KantSpeak showing available modules.](images/interface.png)
+![Main interface of KantSpeak showing available modules.](interface.png)
 
 # AI Usage Disclosure
 
